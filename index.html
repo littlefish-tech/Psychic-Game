@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic Game</title>
+</head>
+<body>
+<div>
+        <p id="directions-text">
+            <h1>The Psychic Game</h1>
+            <p>Guess what letter I'm thinking of</p>
+        </p>
+        
+        <p>wins: <span id="wins-text"></span></p>
+        <p>Lossess: <span id="losses-text"></span></p>
+        <p>Guesses Left: <span id="guessesLeft-text"></span></p>
+        <p>Your Guesses so far: <span id="yourGuessesSoFar-text"></span></p>
+</div>
+
+    <script>
+    // list of letters computer think
+var computerChoice = ["n", "p","r","l", "s"]
+// Create variables that hold references to the places in the HTML where we want to display things.
+var wins = 0;
+var losses = 0;
+var guessesLeft = 3;
+var yourGuessesSoFar = [];
+
+
+var winsText = document.getElementById("wins-text");
+var lossesText = document.getElementById("losses-text");
+var guessesLeftText = document.getElementById("guessesLeft-text");
+var yourGuessesSoFarText = document.getElementById("yourGuessesSoFar-text");
+
+function updateDom() {
+    winsText.textContent = wins;
+    lossesText.textContent = losses;
+    guessesLeftText.textContent = guessesLeft;
+    yourGuessesSoFarText.textContent = yourGuessesSoFar;
+}
+
+updateDom()
+// wins++;
+// updateDom()
+
+
+
+
+
+// This function is run whenever the user presses a key
+document.onkeyup = function(event) {
+
+// Determines which ey was pressed.
+var userGuess = event.key;
+//Randonly chooses a choice from the optio array. This is the Computer's Guess.
+var computerGuess = computerChoice[Math.floor(Math.random()*computerChoice.length)];
+// user guess letter vs company guess letter
+
+if (guessesLeft > 0) {
+    if (userGuess === computerGuess) {
+    wins++;
+    yourGuessesSoFar.push(userGuess)
+    updateDom()
+}else {
+    guessesLeft--;
+    yourGuessesSoFar.push(userGuess)
+    updateDom()
+}
+}else {
+    losses++;
+    guessesLeft = 3;
+    updateDom()
+}
+
+//If I win, I will not loss attempts
+// I guessed the letter not in the list, I loss
+//If I loss, I will lose attempts
+
+ // Hide the directions
+ directionsText.textContent = "";
+
+ // Display the user and computer guesses, and wins/losses/ties.
+//  userChoiceText.textContent = "You chose: " + userGuess;
+//  computerChoiceText.textContent = "The computer chose: " + computerGuess;
+//  winsText.textContent = "wins: " + wins;
+//  lossesText.textContent = "losses: " + losses;
+}
+    
+    </script>
+</body>
+</html>
