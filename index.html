@@ -53,7 +53,8 @@ updateDom()
 document.onkeyup = function(event) {
 
 // Determines which ey was pressed.
-var userGuess = event.key;
+var userGuess = event.key.toLowerCase();
+
 //Randonly chooses a choice from the optio array. This is the Computer's Guess.
 var computerGuess = computerChoice[Math.floor(Math.random()*computerChoice.length)];
 // user guess letter vs company guess letter
