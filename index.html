@@ -21,11 +21,14 @@
 
     <script>
     // list of letters computer think
-var computerChoice = ["n", "p","r","l", "s"]
+var computerChoice = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 // Create variables that hold references to the places in the HTML where we want to display things.
+// var computerChoice = 'abcdefghijklmnopqrstuvwxyz'
+// computerChoice = computerChoice.split(",")
+
 var wins = 0;
 var losses = 0;
-var guessesLeft = 3;
+var guessesLeft = 12;
 var yourGuessesSoFar = [];
 
 
@@ -52,14 +55,18 @@ updateDom()
 // This function is run whenever the user presses a key
 document.onkeyup = function(event) {
 
-// Determines which ey was pressed.
+// Determines which key was pressed.
 var userGuess = event.key.toLowerCase();
+console.log(userGuess + "userguess")
 
 //Randonly chooses a choice from the optio array. This is the Computer's Guess.
 var computerGuess = computerChoice[Math.floor(Math.random()*computerChoice.length)];
+console.log(computerGuess)
 // user guess letter vs company guess letter
 
 if (guessesLeft > 0) {
+    if (computerChoice.indexOf(userGuess) === -1)
+    alert("You must type a letter")
     if (userGuess === computerGuess) {
     wins++;
     yourGuessesSoFar.push(userGuess)
@@ -80,7 +87,7 @@ if (guessesLeft > 0) {
 //If I loss, I will lose attempts
 
  // Hide the directions
- directionsText.textContent = "";
+//  directionsText.textContent = "";
 
  // Display the user and computer guesses, and wins/losses/ties.
 //  userChoiceText.textContent = "You chose: " + userGuess;
